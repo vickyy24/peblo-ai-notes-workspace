@@ -1,4 +1,22 @@
+import { Link } from "react-router-dom";
+import GoogleIcon from "../assets/google.svg";
+import AppleIcon from "../assets/apple.svg";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useState } from "react";
+
+
 function LoginForm() {
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const showPasswordHandler = () => {
+        setShowPassword(true);
+    };
+
+    const hidePasswordHandler = () => {
+        setShowPassword(false);
+    };
+
     return (
         <div>
 
@@ -9,8 +27,8 @@ function LoginForm() {
                 {/* Email */}
                 <div className="flex flex-col gap-2">
 
-                    <label className="text-sm font-semibold text-[#111827]">Email address</label>
-                    <input type="email" placeholder="Enter your email"
+                    <label htmlFor="email" className="text-sm font-semibold text-[#111827]">Email address</label>
+                    <input id="email" type="email" name="Email" autoComplete="email" placeholder="Enter your email" 
                         className="rounded-lg border border-[#d0d5dd] px-4 py-3 outline-none focus:border-[#4f2cff]"
                     />
                 </div>
@@ -18,29 +36,36 @@ function LoginForm() {
                 {/* Password */}
                 <div className="flex flex-col gap-2">
 
-                    <label className="text-sm font-semibold text-[#111827]">Password</label>
-                    <input type="password" placeholder="Enter your password"
-                        className="rounded-lg border border-[#d0d5dd] px-4 py-3 outline-none focus:border-[#4f2cff]"
-                    />
+                    <label htmlFor="password" className="text-sm font-semibold text-[#111827]">Password</label>
+                    <div className="relative">
+                        <input id="password" type={showPassword ? "text" : "password"} name="Password" autoComplete="current-password" placeholder="Enter your password"
+                        className="w-full rounded-lg border border-[#d0d5dd] px-4 py-3 pr-12 outline-none focus:border-[#4f2cff]"/>
+
+                        {
+                            showPassword ? (
+                                <FiEyeOff onClick={hidePasswordHandler} className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-xl text-gray-500"/>
+                            ) : (
+                                <FiEye onClick={showPasswordHandler} className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-xl text-gray-500"/>
+                            )
+                        }
+                    </div>
                 </div>
 
                 {/* Remember + Forgot */}
                 <div className="flex items-center justify-between">
 
                     <div className="flex items-center gap-2">
-
-                        <input type="checkbox" className="h-4 w-4 accent-[#4f2cff]"/>
-                        <p className="text-sm text-gray-600">Remember me</p>
+                        <input id="remember" type="checkbox" className="h-4 w-4 accent-[#4f2cff]"/>
+                        <label htmlFor="remember" className="text-sm text-gray-600">Remember me</label>
                     </div>
 
-                    <button type="button" className="cursor-pointer text-sm font-medium text-[#4f2cff]">
+                    <Link to="#" className="text-sm font-medium text-[#4f2cff]">
                         Forgot password?
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Login Button */}
-                <button type="submit"
-                    className="rounded-lg bg-[#4f2cff] py-3 text-lg font-semibold text-white transition-all hover:bg-[#4324e6]">
+                <button type="submit" className=" cursor-pointer rounded-lg bg-[#4f2cff] py-3 text-lg font-semibold text-white transition-all hover:bg-[#4324e6]">
                     Login
                 </button>
 
@@ -55,14 +80,16 @@ function LoginForm() {
 
                 </div>
 
-                {/* Social Buttons */}
+                {/* Other Login options */}
                 <div className="grid grid-cols-2 gap-4">
 
-                    <button type="button" className="rounded-lg border border-[#d0d5dd] py-4 font-semibold">
+                    <button type="button" className="flex items-center justify-center gap-4 rounded-lg cursor-pointer border border-[#d0d5dd] py-3 font-semibold hover:bg-sky-50">
+                        <img src={GoogleIcon} alt="Google" className="w-5" />
                         Continue with Google
                     </button>
 
-                    <button type="button" className="rounded-lg border border-[#d0d5dd] py-4 font-semibold">
+                    <button type="button" className="flex items-center justify-center gap-4 rounded-lg cursor-pointer border border-[#d0d5dd] py-3 font-semibold hover:bg-sky-50">
+                        <img src={AppleIcon} alt="Apple" className="w-5" />
                         Continue with Apple
                     </button>
 
@@ -70,7 +97,7 @@ function LoginForm() {
 
                 {/* Signup */}
                 <p className="mt-2 text-center text-sm text-gray-600">Don't have an account? 
-                    <span className="cursor-pointer font-semibold text-[#4f2cff]"> Sign up</span>
+                    <Link to="/signup" className="font-semibold text-[#4f2cff]"> Sign up</Link>
                 </p>
             </form>
         </div>
