@@ -74,7 +74,7 @@ function LoginForm() {
 
                     <div className="h-px flex-1 bg-[#e4e7ec]"></div>
 
-                    <p className="text-sm text-gray-500">or continue with</p>
+                    <p className="text-sm text-gray-600">or continue with</p>
 
                     <div className="h-px flex-1 bg-[#e4e7ec]"></div>
 
@@ -83,12 +83,11 @@ function LoginForm() {
                 {/* Other Login options */}
                 <div className="grid grid-cols-2 gap-4">
 
-                    <button type="button" className="flex items-center justify-center gap-4 rounded-lg cursor-pointer border border-[#d0d5dd] py-3 font-semibold hover:bg-sky-50">
+                    <button type="button" className="flex items-center justify-center py-3 gap-4 rounded-lg cursor-pointer border border-[#d0d5dd]  font-semibold hover:bg-sky-50">
                         <img src={GoogleIcon} alt="Google" className="w-5" />
                         Continue with Google
                     </button>
-
-                    <button type="button" className="flex items-center justify-center gap-4 rounded-lg cursor-pointer border border-[#d0d5dd] py-3 font-semibold hover:bg-sky-50">
+                    <button type="button" className="flex items-center justify-center py-3 gap-4 rounded-lg cursor-pointer border border-[#d0d5dd] font-semibold hover:bg-sky-50">
                         <img src={AppleIcon} alt="Apple" className="w-5" />
                         Continue with Apple
                     </button>
